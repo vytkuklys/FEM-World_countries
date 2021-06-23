@@ -1,0 +1,91 @@
+.App.dark-mode {
+    background-color: color(darkModeBody);
+    color: color(uniTextElements);
+
+    ::placeholder {
+        color: color(uniTextElements);
+    }
+
+    .header {
+        background-color: color(darkModeElements);
+
+        &__button {
+            color: color(uniTextElements);
+        }
+    }
+
+    .controls {
+
+        &__input {
+
+            &::before {
+                color: color(uniTextElements);
+            }
+
+            &-text {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+            }
+        }
+
+        .controls__select {
+            .controls__title {
+                background-color: color(darkModeElements);
+
+                &:hover {
+                    color: color(uniTextElements);
+                }
+
+                &::after {
+                    color: color(uniTextElements);
+                }
+            }
+
+            .controls__select-menu {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+            }
+
+            .controls__select-item {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+
+                &:hover {
+                    background-color: rgba(128, 128, 128, 0.212);
+                }
+            }
+        }
+    }
+
+    .output__box{
+        background-color: color(darkModeElements);
+        &:hover{
+            box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.13);
+        }
+    }
+    .output__info {
+        background-color: color(darkModeElements);
+    }
+
+    //details page
+    .details__return {
+        &-btn {
+            background-color: color(darkModeElements);
+            color: color(uniTextElements);
+            &:hover{
+                box-shadow: 0px 0px 9px 1px rgba(255, 255, 255, 0.11);
+            }
+        }
+    }
+
+    .details {
+        &__btn {
+            background-color: color(darkModeElements);
+            color: color(uniTextElements);
+            
+            &:hover{
+                box-shadow: 0px 0px 9px 1px rgba(255, 255, 255, 0.11);
+            }
+        }
+    }
+}
