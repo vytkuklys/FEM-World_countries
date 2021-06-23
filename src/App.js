@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 // import { faUser } from "@fortawesome/free-solid-svg-icons"
 import Header from './components/Header.js'
 import Controls from './components/Controls.js'
+import CardsContainer from './components/CardsContainer'
 // library.add(faUser);
 
 
@@ -12,9 +13,36 @@ class App extends Component {
     constructor(){
         super()
         this.state = {
-            darkTheme: false
+            darkTheme: false,
+            countries: [],
+            data: []
         }
         this.handleClick = this.handleClick.bind(this)
+        this.handleData = this.handleData.bind(this)
+        this.handleRegionClick = this.handleRegionClick.bind(this)
+    }
+
+    handleData(data){
+        this.setState({
+            countries: data,
+            data: data,
+            isLoading: false
+        })
+        console.log(this.state.countries)
+    }
+
+    handleRegionClick(event){
+        event.preventDefault()
+        const region = event.target.textContent
+        if(region === "All"){
+            this.handleData(this.state.data)
+            return;
+        }
+        const countries = this.state.data.filter(item => item.region === region)
+        console.log(this.state.data.filter(item => item.region === "Africa"))
+        this.setState({
+            countries: countries
+        })
     }
 
     handleClick(){
@@ -24,6 +52,15 @@ class App extends Component {
         })
     }
 
+    componentDidMount(){
+        this.setState({isLoading: true});
+        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region")
+        .then(response=>response.json())
+        .then(data => {
+        this.handleData(data);
+        })
+    }
+    
     render(){
     return (
         <div className={`App ${this.state.darkTheme ? "dark-mode" : ""}`}>
@@ -35,7 +72,10 @@ class App extends Component {
                 This
             </button> */}
         <main>
-            <Controls/>
+            <Controls handleRegionClick={this.handleRegionClick}/>
+            {this.state.countries.length &&
+                <CardsContainer countries={this.state.countries}/>
+            }
             <div className="details__return">
                 <button onfocus="blur()" aria-label="return to previous page" className="details__return-btn">Back</button>
             </div>
