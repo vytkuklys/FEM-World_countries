@@ -7,12 +7,7 @@ class Controls extends Component{
             open: false
         }
         this.handleClick = this.handleClick.bind(this)
-        // this.handleRegionClick = this.handleRegionClick.bind(this)
     }
-
-    // handleRegionClick =() =>{
-    //     this.props.handleRegionClick
-    // }
 
     handleClick(){
         const open = this.state.open
@@ -26,7 +21,7 @@ class Controls extends Component{
             <div className={`controls ${this.state.open ? "controls--JS" : ""}`}>
                 <div className="controls__input">
                     <input className="controls__input-text" type="text" placeholder="Search for a country..."
-                        aria-label="Search bar"></input>
+                        aria-label="Search bar" onChange={this.props.handleChange}></input>
                     <button className="controls__input-btn" onfocus="blur()" aria-label="close button"></button>
                 </div>
                 <div className="controls__select" onClick={this.handleClick}>

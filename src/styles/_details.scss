@@ -4,7 +4,7 @@
 
 .details__return {
     padding: 2.25rem 5% 3.5rem;
-    display: none;
+    display: block;
     @include media-s {
         padding: 4rem 0;
     }
@@ -32,7 +32,7 @@
     padding-bottom: 5%;
     margin: 0 5%;
     max-width: 450px;
-    display: none;
+    display: block;
 
     @include media-s {
         margin: 0 auto;
@@ -45,6 +45,7 @@
         max-height: 500px;
         overflow: hidden;
         height: fit-content;
+        display: flex;
     }
 
     &__img {
@@ -133,13 +134,6 @@
         &:hover{
             box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.205);
         }
-    }
-}
-
-.details-open .details{
-    display: block;
-    @include media-m {
-        display: flex;
     }
 }
 

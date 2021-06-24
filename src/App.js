@@ -1,13 +1,11 @@
 import './App.scss'
 import React, {Component} from 'react'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { library } from "@fortawesome/fontawesome-svg-core"
-// import { faUser } from "@fortawesome/free-solid-svg-icons"
 import Header from './components/Header.js'
 import Controls from './components/Controls.js'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import CardsContainer from './components/CardsContainer'
-// library.add(faUser);
-
+import CardAbout from './components/CardAbout'
 
 class App extends Component {
     constructor(){
@@ -18,11 +16,13 @@ class App extends Component {
             data: []
         }
         this.handleClick = this.handleClick.bind(this)
-        this.handleData = this.handleData.bind(this)
+        this.setCountries = this.setCountries.bind(this)
         this.handleRegionClick = this.handleRegionClick.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.isDataFetched = this.isDataFetched.bind(this)
     }
 
-    handleData(data){
+    setCountries(data){
         this.setState({
             countries: data,
             data: data,
@@ -35,7 +35,7 @@ class App extends Component {
         event.preventDefault()
         const region = event.target.textContent
         if(region === "All"){
-            this.handleData(this.state.data)
+            this.setCountries(this.state.data)
             return;
         }
         const countries = this.state.data.filter(item => item.region === region)
@@ -52,66 +52,62 @@ class App extends Component {
         })
     }
 
+    handleChange(event){
+        console.log(event.target.value)
+        const country = event.target.value;
+        const countries = this.state.data.filter(item => item.name.toLowerCase().includes(country.toLowerCase()))
+        this.setState({
+            countries: countries
+        })
+    }
+
+    isDataFetched(data){
+        return data.length
+    }
+
     componentDidMount(){
         this.setState({isLoading: true});
-        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region")
+        if(this.isDataFetched(this.state.data)){
+            return;
+        }
+        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region;nativeName;subregion;currencies;languages;borders;topLevelDomain")
         .then(response=>response.json())
         .then(data => {
-        this.handleData(data);
+        this.setCountries(data);
         })
     }
     
     render(){
     return (
-        <div className={`App ${this.state.darkTheme ? "dark-mode" : ""}`}>
-            <Header 
-                handleClick={this.handleClick}
-                darkTheme={this.state.darkTheme}
-            />
-            {/* <button onClick={this.handleClick}>
-                This
-            </button> */}
-        <main>
-            <Controls handleRegionClick={this.handleRegionClick}/>
-            {this.state.countries.length &&
-                <CardsContainer countries={this.state.countries}/>
-            }
-            <div className="details__return">
-                <button onfocus="blur()" aria-label="return to previous page" className="details__return-btn">Back</button>
+        <Router>
+            <div className={`App ${this.state.darkTheme ? "dark-mode" : ""}`}>
+                <Header 
+                    handleClick={this.handleClick}
+                    darkTheme={this.state.darkTheme}
+                />
+                <main>
+                    <Switch>
+                        <Route path="/" exact>
+                            <Controls 
+                                handleRegionClick={this.handleRegionClick}
+                                handleChange={this.handleChange}
+                            />
+                            {this.state.countries.length &&
+                                <CardsContainer countries={this.state.countries}/>
+                            }
+                        </Route>
+                        <Route path="/:name">
+                            <CardAbout/>
+                        </Route>
+                    </Switch>
+                    <div className="details__return">
+                        <Link to="/">
+                            <button onfocus="blur()" aria-label="return to previous page" className="details__return-btn">Back</button>
+                        </Link>
+                    </div>                    
+                </main>
             </div>
-            <div id="output" className="output"></div>
-            <article className="details">
-                <div className="details__img">
-                    <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Country flag" className="details__flag"/>
-                </div>
-                <div className="details__info">
-                    <h3 className="details__title">Belgium</h3>
-                    <div className="details__list">
-                        <ul className="details__list-items">
-                            <li className="details__list-item" id="nativeName">Native Name: <span>Belgie</span></li>
-                            <li className="details__list-item" id="population">Population: <span>11,319,511</span></li>
-                            <li className="details__list-item" id="region">Region: <span>Europe</span></li>
-                            <li className="details__list-item" id="subregion">Sub Region: <span>Western Europe</span></li>
-                            <li className="details__list-item" id="capital">Capital: <span>Brussels</span></li>
-                        </ul>
-                        <ul className="details__list-items">
-                            <li className="details__list-item" id="topLevelDomain">Top Level Domain: <span>.be</span></li>
-                            <li className="details__list-item" id="currencies">Currencies: <span>Euro</span></li>
-                            <li className="details__list-item" id="languages">Languages: <span>Dutch, French, German</span></li>
-                        </ul>
-                    </div>
-                    <div className="details__btns">
-                        <span className="details__btn-title--display" id="details__title">Border Countries:</span>
-                    </div>
-                </div>
-            </article>
-        </main>
-        <div>
-
-        {/* <FontAwesomeIcon icon="user"/> */}
-        </div>
-
-        </div>
+        </Router>
     );
     }
 }

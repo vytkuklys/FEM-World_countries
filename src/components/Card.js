@@ -1,9 +1,12 @@
+import {Link} from 'react-router-dom'
+
 function Card(props){
     // console.log(props.country.length
     // if (!Object.keys(props.country).length)
     //  return <span>Loading</span>;
     return(
-        <section 
+        <Link to={`/${props.country.name}`}>
+            <section 
                 className="output__box">
                     <div className="output__flag" style={{backgroundImage: `url('${props.country.flag}')`}}></div>
                     <div className="output__info">
@@ -19,6 +22,7 @@ function Card(props){
                         </p>
                     </div>
             </section>
+        </Link>
     )
 }
 
