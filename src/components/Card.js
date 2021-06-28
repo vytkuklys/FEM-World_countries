@@ -1,11 +1,8 @@
 import {Link} from 'react-router-dom'
 
 function Card(props){
-    // console.log(props.country.length
-    // if (!Object.keys(props.country).length)
-    //  return <span>Loading</span>;
     return(
-        <Link to={`/${props.country.name}`}>
+        <Link to={`/${props.country.name}`} className="text-link">
             <section 
                 className="output__box">
                     <div className="output__flag" style={{backgroundImage: `url('${props.country.flag}')`}}></div>

@@ -1,7 +1,6 @@
 import Card from "./Card.js"
 
 function CardsContainer(props){
-    console.log(props.countries.length)
     let cards;
     if(props.countries.length){
         console.log("ja")

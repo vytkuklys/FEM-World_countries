@@ -3,9 +3,8 @@ import React, {Component} from 'react'
 import Header from './components/Header.js'
 import Controls from './components/Controls.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import {Link} from 'react-router-dom'
 import CardsContainer from './components/CardsContainer'
-import CardAbout from './components/CardAbout'
+import CardAboutContainer from './components/CardAboutContainer'
 
 class App extends Component {
     constructor(){
@@ -20,6 +19,7 @@ class App extends Component {
         this.handleRegionClick = this.handleRegionClick.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.isDataFetched = this.isDataFetched.bind(this)
+        this.getFullName = this.getFullName.bind(this)
     }
 
     setCountries(data){
@@ -53,7 +53,6 @@ class App extends Component {
     }
 
     handleChange(event){
-        console.log(event.target.value)
         const country = event.target.value;
         const countries = this.state.data.filter(item => item.name.toLowerCase().includes(country.toLowerCase()))
         this.setState({
@@ -65,12 +64,17 @@ class App extends Component {
         return data.length
     }
 
+    getFullName(code){
+        const name = this.state.data.filter(item => item.alpha3Code === code)
+        return name[0].name;
+    }
+
     componentDidMount(){
         this.setState({isLoading: true});
         if(this.isDataFetched(this.state.data)){
             return;
         }
-        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region;nativeName;subregion;currencies;languages;borders;topLevelDomain")
+        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region;nativeName;subregion;currencies;languages;borders;topLevelDomain;alpha3Code")
         .then(response=>response.json())
         .then(data => {
         this.setCountries(data);
@@ -97,14 +101,9 @@ class App extends Component {
                             }
                         </Route>
                         <Route path="/:name">
-                            <CardAbout/>
+                            <CardAboutContainer getFullName={this.getFullName}/>
                         </Route>
-                    </Switch>
-                    <div className="details__return">
-                        <Link to="/">
-                            <button onfocus="blur()" aria-label="return to previous page" className="details__return-btn">Back</button>
-                        </Link>
-                    </div>                    
+                    </Switch>                   
                 </main>
             </div>
         </Router>
