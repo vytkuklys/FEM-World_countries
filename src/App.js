@@ -5,7 +5,7 @@ import Controls from './components/Controls.js'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import CardsContainer from './components/CardsContainer'
 import CardAboutContainer from './components/CardAboutContainer'
-
+import Loader from './components/Loader.js'
 class App extends Component {
     constructor(){
         super()
@@ -28,7 +28,6 @@ class App extends Component {
             data: data,
             isLoading: false
         })
-        console.log(this.state.countries)
     }
 
     handleRegionClick(event){
@@ -96,8 +95,8 @@ class App extends Component {
                                 handleRegionClick={this.handleRegionClick}
                                 handleChange={this.handleChange}
                             />
-                            {this.state.countries.length &&
-                                <CardsContainer countries={this.state.countries}/>
+                            {this.state.countries.length !== 0 ?
+                                <CardsContainer countries={this.state.countries}/> : <Loader/>
                             }
                         </Route>
                         <Route path="/:name">

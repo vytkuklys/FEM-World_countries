@@ -1,7 +1,7 @@
 .loader {
     padding: 10rem 1.5rem 1.5rem;
     margin: 0 auto;
-    display: none;
+    // display: none;
     width: fit-content;
 
     .spinner {
@@ -19,7 +19,7 @@
             transform: rotate(360deg)
         }
     }
-    &.show__JS{
-        display: block;
-    }
+    // &.show__JS{
+    //     display: block;
+    // }
 }

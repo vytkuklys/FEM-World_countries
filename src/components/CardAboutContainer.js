@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom'
 import React, {useState, useEffect} from 'react'
 import CardAbout from './CardAbout.js'
+import Loader from './Loader.js'
 
 function CardAboutContainer(props){
     const [country, setCountry] = useState([])
@@ -16,9 +17,7 @@ function CardAboutContainer(props){
     const loading = Object.keys(country).length !== 0;
     return (
         <div>
-
-            {loading &&
-                <CardAbout country={country[0]} getFullName={props.getFullName}/>}
+            {loading ? <CardAbout country={country[0]} getFullName={props.getFullName}/> : <Loader/>}
         </div>
         
     )

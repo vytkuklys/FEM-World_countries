@@ -12,7 +12,7 @@ function BorderBtn(props){
     // props.getFullName(props.border);
     return(
         // <button className="details__btn">{props.border}</button>
-        <Link to={`/${name}`}><button className="details__btn">{props.border}</button></Link>
+        <Link to={`/${name}`}><button className="details__btn">{name}</button></Link>
     )
 }
 
