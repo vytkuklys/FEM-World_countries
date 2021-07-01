@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/FEM-World_countries/static/css/main.d1a09865.chunk.css",
+    "main.js": "/FEM-World_countries/static/js/main.2e97b4d8.chunk.js",
+    "main.js.map": "/FEM-World_countries/static/js/main.2e97b4d8.chunk.js.map",
+    "runtime-main.js": "/FEM-World_countries/static/js/runtime-main.12faf918.js",
+    "runtime-main.js.map": "/FEM-World_countries/static/js/runtime-main.12faf918.js.map",
+    "static/js/2.55f43823.chunk.js": "/FEM-World_countries/static/js/2.55f43823.chunk.js",
+    "static/js/2.55f43823.chunk.js.map": "/FEM-World_countries/static/js/2.55f43823.chunk.js.map",
+    "static/js/3.c8407e9e.chunk.js": "/FEM-World_countries/static/js/3.c8407e9e.chunk.js",
+    "static/js/3.c8407e9e.chunk.js.map": "/FEM-World_countries/static/js/3.c8407e9e.chunk.js.map",
+    "index.html": "/FEM-World_countries/index.html",
+    "static/css/main.d1a09865.chunk.css.map": "/FEM-World_countries/static/css/main.d1a09865.chunk.css.map",
+    "static/js/2.55f43823.chunk.js.LICENSE.txt": "/FEM-World_countries/static/js/2.55f43823.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.12faf918.js",
+    "static/js/2.55f43823.chunk.js",
+    "static/css/main.d1a09865.chunk.css",
+    "static/js/main.2e97b4d8.chunk.js"
+  ]
+}
