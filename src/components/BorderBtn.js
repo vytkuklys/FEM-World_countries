@@ -3,15 +3,12 @@ import React, {useState, useEffect} from 'react'
 
 function BorderBtn(props){
     const [name, setName] = useState([])
+    const alpha3Code = props.border
     useEffect(()=>{
-        const name = props.getFullName(props.border)
+        const name = props.getFullName(alpha3Code)
         setName(name);
-    }, [])
-    console.log(name)
-    // console.log('1')
-    // props.getFullName(props.border);
+    }, [props, alpha3Code])
     return(
-        // <button className="details__btn">{props.border}</button>
         <Link to={`/${name}`}><button className="details__btn">{name}</button></Link>
     )
 }
