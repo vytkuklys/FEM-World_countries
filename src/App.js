@@ -73,7 +73,7 @@ class App extends Component {
         if(this.isDataFetched(this.state.data)){
             return;
         }
-        fetch("https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region;nativeName;subregion;currencies;languages;borders;topLevelDomain;alpha3Code")
+        fetch("https://restcountries.com/v3.1/all?fields=flag,name,capital,population,region,nativeName,subregion,currencies,languages,borders,topLevelDomain,alpha3Code")
         .then(response=>response.json())
         .then(data => {
         this.setCountries(data);
