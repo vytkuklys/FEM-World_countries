@@ -71,6 +71,7 @@ class App extends Component {
     componentDidMount(){
         this.setState({isLoading: true});
         if(this.isDataFetched(this.state.data)){
+            console.log("Data is not fetched");
             return;
         }
         fetch("https://restcountries.com/v2/all?fields=flag,name,capital,population,region,nativeName,subregion,currencies,languages,borders,topLevelDomain,alpha3Code")
