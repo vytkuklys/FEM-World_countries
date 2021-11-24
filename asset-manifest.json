@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/FEM-World_countries/static/css/main.ffa3872b.chunk.css",
-    "main.js": "/FEM-World_countries/static/js/main.582c0cb4.chunk.js",
-    "main.js.map": "/FEM-World_countries/static/js/main.582c0cb4.chunk.js.map",
+    "main.js": "/FEM-World_countries/static/js/main.1beba5c1.chunk.js",
+    "main.js.map": "/FEM-World_countries/static/js/main.1beba5c1.chunk.js.map",
     "runtime-main.js": "/FEM-World_countries/static/js/runtime-main.b122675e.js",
     "runtime-main.js.map": "/FEM-World_countries/static/js/runtime-main.b122675e.js.map",
     "static/js/2.5face1c4.chunk.js": "/FEM-World_countries/static/js/2.5face1c4.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b122675e.js",
     "static/js/2.5face1c4.chunk.js",
     "static/css/main.ffa3872b.chunk.css",
-    "static/js/main.582c0cb4.chunk.js"
+    "static/js/main.1beba5c1.chunk.js"
   ]
 }
